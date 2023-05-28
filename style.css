@@ -7,7 +7,8 @@
 :root{
     --red:#F76c6c;
     --yellow:#f8e9a1;
-    --light-blue:#a8d0e6;
+    --light-cyan:#a8d0e6;
+    --dark-cyan:#97bbcf;
     --blue:#24305e;
     --text: #141414;
     --sec-txt:#333;
@@ -19,4 +20,142 @@ html{
 }
 body{
     font-family: 'Rubik', sans-serif;
+    padding:8rem 10rem;
+    background-color: var(--yellow);
+}
+.main-container{
+    background-color: var(--light-cyan);
+    border-radius: 2rem
+}
+.header{
+    background-color: var(--red);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    color: #141414;
+}
+.header img{
+    height: 5rem;
+}
+h1{
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 2.4rem;
+}
+.todos-container{
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+.manage-todos{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 2rem;
+    border-right: 1px solid var(--light-txt);
+    color: var(--text);
+}
+.manage-btn{
+    border: none;
+    width: 14rem;
+    height: 6rem;
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 1rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.add-btn{
+    background-color: var(--yellow);
+}
+.add-btn:hover{
+    background-color: #dfd291;
+}
+.clear-all-btn{
+    background-color: var(--red);
+}
+.clear-all-btn:hover{
+    background-color:#de6161 ;
+}
+.manage-todos p{
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+.todos{
+    padding: 2rem 5rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+.tasks-container{
+    padding: 1rem 2rem;
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text);
+    background-color: var(--dark-cyan);
+    margin: 0 auto;
+    border-radius: .4rem;
+}
+.tasks-container:hover{
+    transform: scale(1.003);
+    transform-origin: 50% 50%;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
+    transition: all .2s ease-out;
+}
+.checkbox{
+    transform: scale(1.4);
+}
+.checkbox:checked{
+    background-color: black;
+}
+.checkbox:checked + .todo-name{
+    text-decoration: line-through;
+    color: var(--sec-txt);
+}
+.title-cont, .details-cont{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.details-cont{
+    gap: 2rem;
+}
+.task-ic{
+    font-size: 2rem;
+    cursor: pointer;
+}
+.details{
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    padding: 1rem 3rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    color: var(--blue);
+    border: 2.3px solid var(--blue);
+    background-color: var(--dark-cyan);
+    transition: all 0.2s;
+}
+.details:hover{
+    background-color: var(--blue);
+    color: var(--dark-cyan);
+}
+.priority-low{
+    border-left: 5px solid green;
+}
+
+.priority-mid{
+    border-left: 5px solid orange;
+}
+
+.priority-high{
+    border-left: 5px solid red;
 }

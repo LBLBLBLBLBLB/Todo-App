@@ -9,11 +9,67 @@
     <title>To-Do </title>
 </head>
 <body>
-    <div class="todos-container">
-        
+    <div class="main-container">
+        <div class="header">
+            <h1>TO-DO</h1>
+            <img src="img/todo-icon.png" alt="todo icon">
+        </div>
+        <div class="todos-container">
+            <div class="manage-todos">
+                <p class="tasks-count">All Tasks : 10</p>
+                <p class="tasks-done">Completed : 6</p>
+                <p class="tasks-undone">Incompleted : 4</p>
+                <button class="manage-btn add-btn" id="add-btn">Add To-Do</button>
+                <button class="manage-btn clear-all-btn" id="clear-all-btn">Clear All</button>
+            </div>
+            <div class="todos">
+                <div class="tasks-container priority-mid">
+                    <div class="title-cont">
+                        <input type="checkbox" class="checkbox">
+                        <p class="todo-name">Task 1</p>
+                        
+                    </div>
+                    <div class="details-cont">
+                        <button class="details" >Details</button>
+                        <p>June 1st</p>
+                        <ion-icon name="create" class="task-ic"></ion-icon>
+                        <ion-icon name="trash-outline" class="task-ic"></ion-icon>
+                    </div>
+                    
+                </div>
+                <div class="tasks-container priority-low">
+                    <div class="title-cont">
+                        <input type="checkbox" class="checkbox">
+                        <p class="todo-name">Task 1</p>
+                        
+                    </div>
+                    <div class="details-cont">
+                        <button class="details" >Details</button>
+                        <p>June 1st</p>
+                        <ion-icon name="create" class="task-ic"></ion-icon>
+                        <ion-icon name="trash-outline" class="task-ic"></ion-icon>
+                    </div>
+                    
+                </div>
+                <div class="tasks-container priority-high">
+                    <div class="title-cont">
+                        <input type="checkbox" class="checkbox">
+                        <p class="todo-name">Task 1</p>
+                        
+                    </div>
+                    <div class="details-cont">
+                        <button class="details" >Details</button>
+                        <p>June 1st</p>
+                        <ion-icon name="create" class="task-ic"></ion-icon>
+                        <ion-icon name="trash-outline" class="task-ic"></ion-icon>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
-
-    
     <script src="src/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
