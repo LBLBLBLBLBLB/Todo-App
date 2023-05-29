@@ -27,7 +27,8 @@ body{
 /* for content */
 .main-container{
     background-color: var(--light-cyan);
-    border-radius: 2rem
+    border-radius: 2rem;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.2);
 }
 .header{
     background-color: var(--red);
