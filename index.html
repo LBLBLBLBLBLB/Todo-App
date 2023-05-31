@@ -23,11 +23,10 @@
                 <button class="manage-btn clear-all-btn" id="clear-all-btn">Clear All</button>
             </div>
             <div class="todos">
-                <div class="tasks-container priority-mid">
+                <!-- <div class="tasks-container">
                     <div class="title-cont">
                         <input type="checkbox" class="checkbox">
                         <p class="todo-name">Task 1</p>
-                        
                     </div>
                     <div class="details-cont">
                         <button class="details" >Details</button>
@@ -35,35 +34,7 @@
                         <ion-icon name="create" class="task-ic"></ion-icon>
                         <ion-icon name="trash-outline" class="task-ic"></ion-icon>
                     </div>
-                    
-                </div>
-                <div class="tasks-container priority-low">
-                    <div class="title-cont">
-                        <input type="checkbox" class="checkbox">
-                        <p class="todo-name">Task 1</p>
-                        
-                    </div>
-                    <div class="details-cont">
-                        <button class="details" >Details</button>
-                        <p>June 1st</p>
-                        <ion-icon name="create" class="task-ic"></ion-icon>
-                        <ion-icon name="trash-outline" class="task-ic"></ion-icon>
-                    </div>
-                    
-                </div>
-                <div class="tasks-container priority-high">
-                    <div class="title-cont">
-                        <input type="checkbox" class="checkbox">
-                        <p class="todo-name">Task 1</p>
-                        
-                    </div>
-                    <div class="details-cont">
-                        <button class="details" >Details</button>
-                        <p>June 1st</p>
-                        <ion-icon name="create" class="task-ic"></ion-icon>
-                        <ion-icon name="trash-outline" class="task-ic"></ion-icon>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -74,30 +45,38 @@
         </div>
         <div class="form-container">
             <div class="btns-modal-container">
-                <button class="modal-btn add-btn-modal">Add to do</button>
-                <button class="modal-btn clear-inputs-btn">Clear Inputs</button>
+                <button class="modal-btn add-btn-modal" id="add-task">Add to do</button>
+                <button class="modal-btn clear-inputs-btn" id="clear-tasks">Clear Inputs</button>
             </div>
             <div class="input-container">
                 <div class="input-content">
-                    <input type="text" placeholder="Task Name: Pay Taxes" class="mod-input">
-                    <textarea name="details" class="mod-input" id="task-detail" placeholder="Details: " cols="78" rows="10"></textarea>
+                    <input type="text" placeholder="Task Name: Pay Taxes" id="task-title" class="mod-input">
+                    <textarea name="details" class="mod-input" id="task-detail" placeholder="Details: I Should pay ..." cols="78" rows="10"></textarea>
                 </div>
                 <div class="form-details">
                     <div class="date">
                         <p>Due Date :</p>
-                        <input type="date">
+                        <input type="date" id="date">
                     </div>
                     <div class="priority">
                         <p>Priority : </p>
                         <button class="modal-btn pr-btn pr-green">Low</button>
                         <button class="modal-btn pr-btn pr-orange">Medium</button>
-                        <button class="modal-btn pr-btn pr-red">HIGH</button>
+                        <button class="modal-btn pr-btn pr-red">High</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="overlay"></div>
+    <div class="clear-modal modal">
+        <p>Are You Sure?</p>
+        <div>
+            <button class=" modal-btn c-ye" id="clear-all-yes">Yes</button>
+            <button class=" modal-btn c-no" id="clear-all-no">No</button>
+        </div>
+    </div>
+    <!-- <div class="modal detailed-modal"></div> -->
+    <div class="overlay "></div>
     <script src="src/script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
