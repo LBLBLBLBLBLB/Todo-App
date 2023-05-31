@@ -1,3 +1,4 @@
+import { format, compareAsc } from 'date-fns'
 // FOR MODAL WINDOW
 const openModalInput = document.getElementById('add-btn-modal');
 const overlay = document.querySelector('.overlay');
@@ -104,6 +105,7 @@ clearInputBtn.addEventListener('click', ()=>{
 });
 
 const renderTasks = (title,detail,date) => {
+    const formatedDate = formateDate(date);
     const html = `
     <div class="tasks-container">
         <div class="title-cont">
@@ -112,7 +114,7 @@ const renderTasks = (title,detail,date) => {
         </div>
         <div class="details-cont">
             <button class="details" >Details</button>
-            <p>${date}</p>
+            <p>${formatedDate}</p>
             <ion-icon name="trash-outline" class="task-ic trash-ic"></ion-icon>
         </div>
     </div>
@@ -130,9 +132,11 @@ const renderTasks = (title,detail,date) => {
         lastTaskContainer.remove();
     });
 }
+
 const removeAllTasks = () => {
     todosContainer.innerHTML = '';
 }
+
 const showDetailInfo = (titles, details, dates) => {
     detailedModal.innerHTML = '';
     openDetailsModal()
@@ -153,4 +157,11 @@ const showDetailInfo = (titles, details, dates) => {
     detailedModal.insertAdjacentHTML('beforeend',detailsHtml);
     const closeDetails = detailedModal.querySelector('.cl-det-btn');
     closeDetails.addEventListener('click', closeDetailsModal);
+}
+
+const formateDate = (formDate) => {
+    const dateObject = new Date(formDate);
+    const dateMonth = format(dateObject, 'MMM');
+    const dateDay = format(dateObject, 'do');
+    return `${dateDay} ${dateMonth}`;
 }
