@@ -350,3 +350,35 @@ h1{
     display: block;
     backdrop-filter: blur(5px);
 }
+.details-modal{
+    width: 50rem;
+}
+
+.detailed-info{
+    max-width:60rem;
+}
+.det-h{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--red);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1rem 2rem;
+    font-size: 2.8rem;
+    color: var(--blue);
+    font-weight: 500;
+}
+.det-in{
+    padding: 1rem 2rem; 
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: var(--text);
+}
+.det-in p span{
+    font-weight: 300;
+    font-size: 2.1rem;
+}
+.det-in p{
+    margin-bottom: 1rem;
+}

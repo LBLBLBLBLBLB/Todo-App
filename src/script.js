@@ -7,6 +7,9 @@ const closeBtn = document.querySelector('.in-ic');
 const clearModal = document.querySelector('.clear-modal');
 const clearAllBtn = document.getElementById('clear-all-btn');
 const btnClearNo = document.getElementById('clear-all-no');
+const detailedModal = document.querySelector('.details-modal');
+
+
 
 
 const openModal = () => {
@@ -25,11 +28,20 @@ const closeClearModal = () =>{
     clearModal.classList.remove('modal-active');
     overlay.classList.remove('overlay-active');
 }
+const openDetailsModal = () => {
+    detailedModal.classList.add('modal-active');
+    overlay.classList.add('overlay-active');
+}
+const closeDetailsModal = () => {
+    detailedModal.classList.remove('modal-active');
+    overlay.classList.remove('overlay-active');
+}
 openModalInput.addEventListener('click', openModal);
 clearAllBtn.addEventListener('click', openClearModal);
 overlay.addEventListener('click', () => {
     closeModal();
     closeClearModal();
+    closeDetailsModal();
     clearInputs();
 });
 closeBtn.addEventListener('click', ()=>{
@@ -41,6 +53,7 @@ window.addEventListener('keydown', (key) => {
     if(key.key === "Escape"){
         closeModal();
         closeClearModal();
+        closeDetailsModal();
         clearInputs();
     }
 });
@@ -49,7 +62,7 @@ const todosContainer = document.querySelector('.todos');
 const taskTitle = document.getElementById('task-title');
 const taskDetail = document.getElementById('task-detail');
 const taskDate = document.getElementById('date');
-// const priorityBtn = document.querySelectorAll('.pr-btn');
+const priorityBtn = document.querySelectorAll('.pr-btn');
 const addTask = document.getElementById('add-task');
 const clearInputBtn = document.getElementById('clear-tasks');
 
@@ -66,11 +79,10 @@ const getValuesFromInput = () =>{
         alert("PLEASE FILL THE FIELDS");
     }
 }
-
-addTask.addEventListener('click', ()=>{
+addTask.addEventListener('click', (e)=>{
+    e.preventDefault();
     getValuesFromInput();
 });
-
 const clearInputs = () => {
     taskTitle.value = '';
     taskDetail.value = '';
@@ -79,7 +91,6 @@ const clearInputs = () => {
 clearInputBtn.addEventListener('click', ()=>{
     clearInputs();
 });
-
 const renderTasks = (title, details, date) => {
     const html = `
     <div class="tasks-container">
@@ -96,4 +107,32 @@ const renderTasks = (title, details, date) => {
     </div>
     `;
     todosContainer.insertAdjacentHTML('beforeend', html);
+
+    const tasksContainers = todosContainer.getElementsByClassName('tasks-container');
+    const lastTaskContainer = tasksContainers[tasksContainers.length - 1];
+    const detailsButton = lastTaskContainer.querySelector('.details');
+    
+
+    detailsButton.addEventListener('click', () =>{
+        detailedModal.innerHTML = '';
+        openDetailsModal()
+        const detailsHtml = `
+            <div class="detailed-info">
+                <div class="det-h">
+                    <p>Details</p>
+                    <ion-icon name="close-outline" class="cl-det-btn"></ion-icon>
+                </div>
+                <div class="det-in">
+                    <p>Name: <span> ${title}</span> </p>
+                    <p>Details: <span> ${details}</span></p>
+                    <p>Date : <span> ${date}</span></p>
+                </div>
+            </div>
+        `;
+        
+        detailedModal.insertAdjacentHTML('beforeend',detailsHtml);
+        const closeDetails = detailedModal.querySelector('.cl-det-btn');
+        closeDetails.addEventListener('click', closeDetailsModal);
+    });
 }
+
