@@ -1,4 +1,4 @@
-import { format, compareAsc } from 'date-fns'
+import { format } from 'date-fns'
 // FOR MODAL WINDOW
 const openModalInput = document.getElementById('add-btn-modal');
 const overlay = document.querySelector('.overlay');
@@ -106,6 +106,7 @@ clearInputBtn.addEventListener('click', ()=>{
 
 const renderTasks = (title,detail,date) => {
     const formatedDate = formateDate(date);
+    
     const html = `
     <div class="tasks-container">
         <div class="title-cont">
@@ -138,6 +139,7 @@ const removeAllTasks = () => {
 }
 
 const showDetailInfo = (titles, details, dates) => {
+    const dateForDetailed = formatDateDetails(dates);
     detailedModal.innerHTML = '';
     openDetailsModal()
     const detailsHtml = `
@@ -149,7 +151,7 @@ const showDetailInfo = (titles, details, dates) => {
             <div class="det-in">
                 <p>Name: <span> ${titles}</span> </p>
                 <p>Details: <span> ${details}</span></p>
-                <p>Date : <span> ${dates}</span></p>
+                <p>Date : <span> ${dateForDetailed}</span></p>
             </div>
         </div>
     `;
@@ -164,4 +166,11 @@ const formateDate = (formDate) => {
     const dateMonth = format(dateObject, 'MMM');
     const dateDay = format(dateObject, 'do');
     return `${dateDay} ${dateMonth}`;
+}
+const formatDateDetails = (detailsDate) => {
+    const dateObject = new Date(detailsDate);
+    const dateMonth = format(dateObject, 'MMM');
+    const dateDay = format(dateObject, 'do');
+    const dateYear = format(dateObject, 'yyyy');
+    return `${dateMonth} ${dateDay}, ${dateYear}`;
 }
