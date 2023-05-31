@@ -79,19 +79,27 @@ const getValuesFromInput = () =>{
         alert("PLEASE FILL THE FIELDS");
     }
 }
+
+const formatDate = (inpDate) => {
+    let date = new Date(inpDate);
+    let mon
+}
 addTask.addEventListener('click', (e)=>{
     e.preventDefault();
     getValuesFromInput();
 });
+
 const clearInputs = () => {
     taskTitle.value = '';
     taskDetail.value = '';
     taskDate.value = taskDate.defaultValue;
 }
+
 clearInputBtn.addEventListener('click', ()=>{
     clearInputs();
 });
-const renderTasks = (title, details, date) => {
+
+const renderTasks = (title,detail,date) => {
     const html = `
     <div class="tasks-container">
         <div class="title-cont">
@@ -101,8 +109,7 @@ const renderTasks = (title, details, date) => {
         <div class="details-cont">
             <button class="details" >Details</button>
             <p>${date}</p>
-            <ion-icon name="create" class="task-ic"></ion-icon>
-            <ion-icon name="trash-outline" class="task-ic"></ion-icon>
+            <ion-icon name="trash-outline" class="task-ic trash-ic"></ion-icon>
         </div>
     </div>
     `;
@@ -110,29 +117,35 @@ const renderTasks = (title, details, date) => {
 
     const tasksContainers = todosContainer.getElementsByClassName('tasks-container');
     const lastTaskContainer = tasksContainers[tasksContainers.length - 1];
-    const detailsButton = lastTaskContainer.querySelector('.details');
-    
+    const detailedBtn = lastTaskContainer.querySelector('.details');
+    detailedBtn.addEventListener('click', ()=>{
+        showDetailInfo(title,detail,date);
+    });
 
-    detailsButton.addEventListener('click', () =>{
-        detailedModal.innerHTML = '';
-        openDetailsModal()
-        const detailsHtml = `
-            <div class="detailed-info">
-                <div class="det-h">
-                    <p>Details</p>
-                    <ion-icon name="close-outline" class="cl-det-btn"></ion-icon>
-                </div>
-                <div class="det-in">
-                    <p>Name: <span> ${title}</span> </p>
-                    <p>Details: <span> ${details}</span></p>
-                    <p>Date : <span> ${date}</span></p>
-                </div>
-            </div>
-        `;
-        
-        detailedModal.insertAdjacentHTML('beforeend',detailsHtml);
-        const closeDetails = detailedModal.querySelector('.cl-det-btn');
-        closeDetails.addEventListener('click', closeDetailsModal);
+    const deleteBtn = lastTaskContainer.querySelector('.trash-ic');
+    deleteBtn.addEventListener('click' ,() =>{
+        lastTaskContainer.remove();
     });
 }
 
+const showDetailInfo = (titles, details, dates) => {
+    detailedModal.innerHTML = '';
+    openDetailsModal()
+    const detailsHtml = `
+        <div class="detailed-info">
+            <div class="det-h">
+                <p>Details</p>
+                <ion-icon name="close-outline" class="cl-det-btn"></ion-icon>
+            </div>
+            <div class="det-in">
+                <p>Name: <span> ${titles}</span> </p>
+                <p>Details: <span> ${details}</span></p>
+                <p>Date : <span> ${dates}</span></p>
+            </div>
+        </div>
+    `;
+    
+    detailedModal.insertAdjacentHTML('beforeend',detailsHtml);
+    const closeDetails = detailedModal.querySelector('.cl-det-btn');
+    closeDetails.addEventListener('click', closeDetailsModal);
+}
