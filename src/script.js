@@ -1,5 +1,4 @@
 // FOR MODAL WINDOW
-// variables
 const openModalInput = document.getElementById('add-btn-modal');
 const overlay = document.querySelector('.overlay');
 const modalForInputs = document.querySelector('.modal-input');
@@ -8,8 +7,6 @@ const clearModal = document.querySelector('.clear-modal');
 const clearAllBtn = document.getElementById('clear-all-btn');
 const btnClearNo = document.getElementById('clear-all-no');
 const detailedModal = document.querySelector('.details-modal');
-
-
 
 
 const openModal = () => {
@@ -23,6 +20,12 @@ const closeModal = () => {
 const openClearModal = ()=>{
     clearModal.classList.add('modal-active');
     overlay.classList.add('overlay-active');
+
+    const btnClearYes = document.getElementById('clear-all-yes');
+    btnClearYes.addEventListener('click', () => {
+    removeAllTasks();
+    closeClearModal();
+  });  
 }
 const closeClearModal = () =>{
     clearModal.classList.remove('modal-active');
@@ -36,19 +39,24 @@ const closeDetailsModal = () => {
     detailedModal.classList.remove('modal-active');
     overlay.classList.remove('overlay-active');
 }
+
 openModalInput.addEventListener('click', openModal);
 clearAllBtn.addEventListener('click', openClearModal);
+
 overlay.addEventListener('click', () => {
     closeModal();
     closeClearModal();
     closeDetailsModal();
     clearInputs();
 });
+
 closeBtn.addEventListener('click', ()=>{
     closeModal();
     clearInputs();
 });
+
 btnClearNo.addEventListener('click', closeClearModal);
+
 window.addEventListener('keydown', (key) => {
     if(key.key === "Escape"){
         closeModal();
@@ -80,10 +88,6 @@ const getValuesFromInput = () =>{
     }
 }
 
-const formatDate = (inpDate) => {
-    let date = new Date(inpDate);
-    let mon
-}
 addTask.addEventListener('click', (e)=>{
     e.preventDefault();
     getValuesFromInput();
@@ -121,13 +125,14 @@ const renderTasks = (title,detail,date) => {
     detailedBtn.addEventListener('click', ()=>{
         showDetailInfo(title,detail,date);
     });
-
     const deleteBtn = lastTaskContainer.querySelector('.trash-ic');
     deleteBtn.addEventListener('click' ,() =>{
         lastTaskContainer.remove();
     });
 }
-
+const removeAllTasks = () => {
+    todosContainer.innerHTML = '';
+}
 const showDetailInfo = (titles, details, dates) => {
     detailedModal.innerHTML = '';
     openDetailsModal()
