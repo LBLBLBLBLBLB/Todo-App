@@ -18,6 +18,8 @@ const closeModal = () => {
     modalForInputs.classList.remove('modal-active');
     overlay.classList.remove('overlay-active');
 }
+// this function is for opening clear all modal
+//and also its for clear all tasks if click yes
 const openClearModal = ()=>{
     clearModal.classList.add('modal-active');
     overlay.classList.add('overlay-active');
@@ -67,6 +69,7 @@ window.addEventListener('keydown', (key) => {
     }
 });
 
+//variables
 const todosContainer = document.querySelector('.todos');
 const taskTitle = document.getElementById('task-title');
 const taskDetail = document.getElementById('task-detail');
@@ -75,6 +78,27 @@ const priorityBtn = document.querySelectorAll('.pr-btn');
 const addTask = document.getElementById('add-task');
 const clearInputBtn = document.getElementById('clear-tasks');
 
+let todosCount = document.querySelector('.tasks-count');
+let todosDone = document.querySelector('.tasks-done');
+let todosUndone = document.querySelector('.tasks-undone');
+
+const updateCount = () => {
+    const tasksContainers = todosContainer.getElementsByClassName('tasks-container');
+    const checkboxes = todosContainer.getElementsByClassName('checkbox');
+    
+    let doneCount =0;
+    for(let i = 0; i<checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            doneCount ++;
+        }
+    }
+    todosCount.textContent = `Tasks Count: ${tasksContainers.length}`;
+    todosDone.textContent = `Tasks Finished: ${doneCount}`;
+    todosUndone.textContent = `Tasks Unfinished: ${tasksContainers.length - doneCount} `;
+
+}
+
+//this is for get values , and if values empty  getting alert
 const getValuesFromInput = () =>{
     let titleValue = taskTitle.value;
     let detailValue = taskDetail.value;
@@ -88,22 +112,25 @@ const getValuesFromInput = () =>{
         alert("PLEASE FILL THE FIELDS");
     }
 }
-
 addTask.addEventListener('click', (e)=>{
     e.preventDefault();
     getValuesFromInput();
+    updateCount();
 });
 
+// this helps to make values of input default
 const clearInputs = () => {
     taskTitle.value = '';
     taskDetail.value = '';
     taskDate.value = taskDate.defaultValue;
 }
-
 clearInputBtn.addEventListener('click', ()=>{
     clearInputs();
 });
 
+
+//this is for making tasks , also for showing us detailed information 
+// also for deleting single tasks
 const renderTasks = (title,detail,date) => {
     const formatedDate = formateDate(date);
     
@@ -131,13 +158,23 @@ const renderTasks = (title,detail,date) => {
     const deleteBtn = lastTaskContainer.querySelector('.trash-ic');
     deleteBtn.addEventListener('click' ,() =>{
         lastTaskContainer.remove();
+        updateCount();
+    });
+    updateCount();
+    const checkbox = lastTaskContainer.querySelector('.checkbox');
+    checkbox.addEventListener('change', () => {
+        updateCount();
     });
 }
 
+//makes todosContainer empty
 const removeAllTasks = () => {
     todosContainer.innerHTML = '';
+    updateCount();
 }
 
+
+//make template literals for detailed info
 const showDetailInfo = (titles, details, dates) => {
     const dateForDetailed = formatDateDetails(dates);
     detailedModal.innerHTML = '';
@@ -161,12 +198,15 @@ const showDetailInfo = (titles, details, dates) => {
     closeDetails.addEventListener('click', closeDetailsModal);
 }
 
+//format date for tasks
 const formateDate = (formDate) => {
     const dateObject = new Date(formDate);
     const dateMonth = format(dateObject, 'MMM');
     const dateDay = format(dateObject, 'do');
     return `${dateDay} ${dateMonth}`;
 }
+
+//format date for details
 const formatDateDetails = (detailsDate) => {
     const dateObject = new Date(detailsDate);
     const dateMonth = format(dateObject, 'MMM');
@@ -174,3 +214,4 @@ const formatDateDetails = (detailsDate) => {
     const dateYear = format(dateObject, 'yyyy');
     return `${dateMonth} ${dateDay}, ${dateYear}`;
 }
+
