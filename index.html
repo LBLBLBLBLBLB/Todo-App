@@ -16,26 +16,17 @@
         </div>
         <div class="todos-container">
             <div class="manage-todos">
-                <p class="tasks-count">Tasks Count : 0</p>
-                <p class="tasks-done">Tasks Finished : 0</p>
-                <p class="tasks-undone">Taks Unfinished : 0 </p>
-                <button class="manage-btn add-btn" id="add-btn-modal">Add To-Do</button>
-                <button class="manage-btn clear-all-btn" id="clear-all-btn">Clear All</button>
+                <div class="manage-p">
+                    <p class="tasks-count">Tasks Count : 0</p>
+                    <p class="tasks-done">Tasks Finished : 0</p>
+                    <p class="tasks-undone">Taks Unfinished : 0 </p>
+                </div>
+                <div class="manage-b">
+                    <button class="manage-btn add-btn" id="add-btn-modal">Add To-Do</button>
+                    <button class="manage-btn clear-all-btn" id="clear-all-btn">Clear All</button>
+                </div>
             </div>
-            <div class="todos">
-                <!-- <div class="tasks-container">
-                    <div class="title-cont">
-                        <input type="checkbox" class="checkbox">
-                        <p class="todo-name">Task 1</p>
-                    </div>
-                    <div class="details-cont">
-                        <button class="details" >Details</button>
-                        <p>June 1st</p>
-                        <ion-icon name="create" class="task-ic"></ion-icon>
-                        <ion-icon name="trash-outline" class="task-ic"></ion-icon>
-                    </div>
-                </div> -->
-            </div>
+            <div class="todos"></div>
         </div>
     </div>
     <div class="modal-input modal">
@@ -84,19 +75,7 @@
             <button class=" modal-btn c-no" id="clear-all-no">No</button>
         </div>
     </div>
-    <div class="modal details-modal ">
-        <!-- <div class="detailed-info">
-            <div class="det-h">
-                <p>Details</p>
-                <ion-icon name="close-outline" class="cl-det-btn"></ion-icon>
-            </div>
-            <div class="det-in">
-                <p>Name: <span> Task 1</span> </p>
-                <p>Details: </p>
-                <p>Date :</p>
-            </div>
-        </div> -->
-    </div>
+    <div class="modal details-modal"> </div>
     <div class="overlay "></div>
     <script src="dist/main.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

@@ -50,7 +50,7 @@ h1{
 }
 .todos-container{
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: minmax(200px, 15%) 1fr;
 }
 .manage-todos{
     display: flex;
@@ -71,6 +71,11 @@ h1{
     cursor: pointer;
     font-family: inherit;
     transition: all 0.3s;
+}
+.manage-b{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 .add-btn{
     margin-top: 10rem;
@@ -430,4 +435,95 @@ input[type="radio"]{
 }
 .date-cont{
     width: 8rem;
+}
+/* responsive */
+@media (max-width: 1000px) {
+    html{
+        font-size: 56.75%;
+    }
+}
+@media (max-width: 920px){
+    .modal-input{
+        width: 90rem;
+    }
+    .form-container{
+        flex-direction: column;
+    }
+    .btns-modal-container{
+        flex-direction: row;
+        border: none;
+        border-bottom: 1px solid var(--sec-txt);
+        align-items: center;
+    }
+}
+@media (max-width: 820px){
+    .modal-input{
+        width: 85rem;
+    }
+}
+@media (max-width: 800px) {
+    html{
+        font-size: 50%;
+    }
+}
+
+@media (max-width: 740px) {
+    html{
+        font-size: 43.75%; 
+    }
+}
+
+@media (max-width: 680px) {
+    html{
+        font-size: 40%; 
+    }
+}
+@media (max-width: 640px) {
+    .todos-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .manage-todos{
+        border-right:none;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .add-btn{
+        margin-top: 0;
+    }
+    .manage-b{
+        flex-direction: row;
+    }
+    .manage-p{
+        display: flex;
+        gap: 1rem;
+    }
+}
+@media (max-width: 570px) {
+    .manage-todos{
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        align-items: center;
+    }
+    .manage-b{
+        gap: 3.4rem;
+    }
+    .modal-input{
+        width: 80rem;
+    }
+}
+@media (max-width:530px) {
+    .modal-input{
+        width: 65rem;
+    }
+}
+@media (max-width: 435px){
+    .date-cont{
+        display: none;
+    }
+    .modal-input{
+        width: 50rem;
+    }
 }
