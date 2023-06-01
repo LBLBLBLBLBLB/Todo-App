@@ -13,7 +13,6 @@
     --text: #141414;
     --sec-txt:#333;
     --light-txt:#666;
-
 }
 html{
     font-size: 62.5%;
@@ -24,7 +23,6 @@ body{
     background-color: var(--yellow);
     position: relative;
 }
-/* for content */
 .main-container{
     background-color: var(--light-cyan);
     border-radius: 2rem;
@@ -101,7 +99,6 @@ h1{
     flex-direction: column;
     gap: 1.4rem;
 }
-
 .tasks-container{
     padding: 1rem 2rem;
     width:100%;
@@ -121,7 +118,6 @@ h1{
 .tasks-container.medium-priority {
     border-left: 6px solid orangered;
 }
-  
 .tasks-container.low-priority {
     border-left: 6px solid green;
 }
@@ -178,15 +174,12 @@ h1{
 .priority-low{
     border-left: 5px solid green;
 }
-
 .priority-mid{
     border-left: 5px solid orangered;
 }
-
 .priority-high{
     border-left: 5px solid red;
 }
-/* FOR MODAL */
 .modal{
     position: fixed;
     top: 50%;
@@ -266,7 +259,6 @@ input[type="radio"]{
     text-transform: uppercase;
     transition: all 0.2s;
 }
-
 .pr-radio-green{
     color: green;
     border:3px solid green;
@@ -294,13 +286,13 @@ input[type="radio"]{
 .pr-radio-clicked {
     background-color: green;
     color: var(--light-cyan);
-  }
-  .pr-radio-clicked.pr-radio-orange {
+}
+.pr-radio-clicked.pr-radio-orange {
     background-color: orangered;
-  }
-  .pr-radio-clicked.pr-radio-red {
+}
+.pr-radio-clicked.pr-radio-red {
     background-color: red;
-  }
+}
 .input-container,.input-content{
     display: flex;
     flex-direction: column;
@@ -309,7 +301,6 @@ input[type="radio"]{
     padding: 2rem ;
     gap: 5rem;
 }
-
 .mod-input{
     font-family: inherit;
     padding: 1rem;
@@ -404,7 +395,6 @@ input[type="radio"]{
 .details-modal{
     width: 50rem;
 }
-
 .detailed-info{
     max-width:60rem;
 }
@@ -436,7 +426,6 @@ input[type="radio"]{
 .date-cont{
     width: 8rem;
 }
-/* responsive */
 @media (max-width: 1000px) {
     html{
         font-size: 56.75%;
@@ -466,13 +455,11 @@ input[type="radio"]{
         font-size: 50%;
     }
 }
-
 @media (max-width: 740px) {
     html{
         font-size: 43.75%; 
     }
 }
-
 @media (max-width: 680px) {
     html{
         font-size: 40%; 
