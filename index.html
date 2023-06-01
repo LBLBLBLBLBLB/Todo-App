@@ -17,8 +17,8 @@
         <div class="todos-container">
             <div class="manage-todos">
                 <p class="tasks-count">Tasks Count : 0</p>
-                <p class="tasks-done">Tasks Finished :</p>
-                <p class="tasks-undone">Taks Unfinished : </p>
+                <p class="tasks-done">Tasks Finished : 0</p>
+                <p class="tasks-undone">Taks Unfinished : 0 </p>
                 <button class="manage-btn add-btn" id="add-btn-modal">Add To-Do</button>
                 <button class="manage-btn clear-all-btn" id="clear-all-btn">Clear All</button>
             </div>
@@ -50,19 +50,28 @@
             </div>
             <div class="input-container">
                 <div class="input-content">
-                    <input type="text" placeholder="Task Name: Pay Taxes" id="task-title" class="mod-input">
-                    <textarea name="details" class="mod-input" id="task-detail" placeholder="Details: I Should pay ..." cols="78" rows="10"></textarea>
+                    <p class="error error-name">Please Enter Task Name!</p>
+                    <input type="text" placeholder="| Task Name: Pay Taxes" id="task-title" class="mod-input">
+                    <p class="error error-details">Please Fill Details!</p>
+                    <textarea name="details" class="mod-input" id="task-detail" placeholder="| Details: I Should pay..." cols="78" rows="10"></textarea>
                 </div>
                 <div class="form-details">
+                    <p class="error error-dates">Please Choose Due Date!</p>
                     <div class="date">
                         <p>Due Date :</p>
                         <input type="date" id="date">
                     </div>
+                    <p class="error error-priority">Please Choose Priority!</p>
                     <div class="priority">
                         <p>Priority : </p>
-                        <button class="modal-btn pr-btn pr-green">Low</button>
-                        <button class="modal-btn pr-btn pr-orange">Medium</button>
-                        <button class="modal-btn pr-btn pr-red">High</button>
+                        <input type="radio" name="priority" id="low" value="Low">
+                        <label for="low" class="pr-radio-btn pr-radio-green">Low</label>
+
+                        <input type="radio" name="priority" id="medium" value="Medium">
+                        <label for="medium" class="pr-radio-btn pr-radio-orange">Medium</label>
+
+                        <input type="radio" name="priority" id="high" value="High">
+                        <label for="high" class="pr-radio-btn pr-radio-red">High</label>
                     </div>
                 </div>
             </div>

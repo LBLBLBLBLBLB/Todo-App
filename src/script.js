@@ -74,13 +74,31 @@ const todosContainer = document.querySelector('.todos');
 const taskTitle = document.getElementById('task-title');
 const taskDetail = document.getElementById('task-detail');
 const taskDate = document.getElementById('date');
-const priorityBtn = document.querySelectorAll('.pr-btn');
 const addTask = document.getElementById('add-task');
 const clearInputBtn = document.getElementById('clear-tasks');
 
 let todosCount = document.querySelector('.tasks-count');
 let todosDone = document.querySelector('.tasks-done');
 let todosUndone = document.querySelector('.tasks-undone');
+const labels = document.querySelectorAll('.pr-radio-btn');
+
+labels.forEach(label => {
+  label.addEventListener("click", () => {
+    labels.forEach(l => l.classList.remove("pr-radio-clicked"));
+    label.classList.add("pr-radio-clicked");
+  });
+});
+
+const getPriority = () => {
+    const selectedRadio = document.querySelector('input[name="priority"]:checked');
+    
+    if (selectedRadio) {
+      const selectedValue = selectedRadio.value;
+      return selectedValue;
+    } else {
+        return null;
+    }
+}
 
 const updateCount = () => {
     const tasksContainers = todosContainer.getElementsByClassName('tasks-container');
@@ -93,8 +111,8 @@ const updateCount = () => {
         }
     }
     todosCount.textContent = `Tasks Count: ${tasksContainers.length}`;
-    todosDone.textContent = `Tasks Finished: ${doneCount}`;
-    todosUndone.textContent = `Tasks Unfinished: ${tasksContainers.length - doneCount} `;
+    todosDone.textContent = `Finished: ${doneCount}`;
+    todosUndone.textContent = `Unfinished: ${tasksContainers.length - doneCount} `;
 
 }
 
@@ -103,19 +121,49 @@ const getValuesFromInput = () =>{
     let titleValue = taskTitle.value;
     let detailValue = taskDetail.value;
     let dateValue = taskDate.value;
-    // let priorityValue;
-    if(titleValue && detailValue && dateValue){
-        renderTasks(titleValue,detailValue,dateValue);
+    let selectedPriority = getPriority();
+
+    const errorName = document.querySelector('.error-name');
+    const errorDetails = document.querySelector('.error-details');
+    const errorDates = document.querySelector('.error-dates');
+    const errorPrior = document.querySelector('.error-priority');
+
+    if (!titleValue) {
+        errorName.style.visibility = 'visible';
+    } else {
+        errorName.style.visibility = 'hidden';
+    }
+    
+    if (!detailValue) {
+        errorDetails.style.visibility = 'visible';
+    } else {
+        errorDetails.style.visibility = 'hidden';
+    }
+    
+    if (!dateValue ) {
+        errorDates.style.visibility = 'visible';
+    } else {
+        errorDates.style.visibility = 'hidden';
+    }
+      
+    if (!selectedPriority) {
+        errorPrior.style.visibility = 'visible';
+    } else {
+        errorPrior.style.visibility = 'hidden';
+    }
+    
+    if (titleValue && detailValue && dateValue && selectedPriority) {
+        renderTasks(titleValue, detailValue, dateValue);
         closeModal();
         clearInputs();
-    }else{
-        alert("PLEASE FILL THE FIELDS");
     }
+    
 }
 addTask.addEventListener('click', (e)=>{
     e.preventDefault();
     getValuesFromInput();
     updateCount();
+    getPriority();
 });
 
 // this helps to make values of input default
@@ -123,6 +171,15 @@ const clearInputs = () => {
     taskTitle.value = '';
     taskDetail.value = '';
     taskDate.value = taskDate.defaultValue;
+
+    labels.forEach(label => {
+        label.classList.remove("pr-radio-clicked");
+    });
+
+    const selectedRadio = document.querySelector('input[name="priority"]:checked');
+    if (selectedRadio) {
+        selectedRadio.checked = false;
+    }
 }
 clearInputBtn.addEventListener('click', ()=>{
     clearInputs();
@@ -133,16 +190,26 @@ clearInputBtn.addEventListener('click', ()=>{
 // also for deleting single tasks
 const renderTasks = (title,detail,date) => {
     const formatedDate = formateDate(date);
-    
+    const selectedPriority = getPriority();
+
+    let priorityClass = '';
+    if (selectedPriority === 'High') {
+    priorityClass = 'high-priority';
+    } else if (selectedPriority === 'Medium') {
+    priorityClass = 'medium-priority';
+    } else if (selectedPriority === 'Low') {
+    priorityClass = 'low-priority';
+    }
+
     const html = `
-    <div class="tasks-container">
+    <div class="tasks-container ${priorityClass}">
         <div class="title-cont">
             <input type="checkbox" class="checkbox">
             <p class="todo-name">${title}</p>
         </div>
         <div class="details-cont">
             <button class="details" >Details</button>
-            <p>${formatedDate}</p>
+            <p class = 'date-cont'>${formatedDate}</p>
             <ion-icon name="trash-outline" class="task-ic trash-ic"></ion-icon>
         </div>
     </div>
@@ -153,7 +220,7 @@ const renderTasks = (title,detail,date) => {
     const lastTaskContainer = tasksContainers[tasksContainers.length - 1];
     const detailedBtn = lastTaskContainer.querySelector('.details');
     detailedBtn.addEventListener('click', ()=>{
-        showDetailInfo(title,detail,date);
+        showDetailInfo(title,detail,date,selectedPriority);
     });
     const deleteBtn = lastTaskContainer.querySelector('.trash-ic');
     deleteBtn.addEventListener('click' ,() =>{
@@ -175,7 +242,7 @@ const removeAllTasks = () => {
 
 
 //make template literals for detailed info
-const showDetailInfo = (titles, details, dates) => {
+const showDetailInfo = (titles, details, dates,priority) => {
     const dateForDetailed = formatDateDetails(dates);
     detailedModal.innerHTML = '';
     openDetailsModal()
@@ -189,6 +256,7 @@ const showDetailInfo = (titles, details, dates) => {
                 <p>Name: <span> ${titles}</span> </p>
                 <p>Details: <span> ${details}</span></p>
                 <p>Date : <span> ${dateForDetailed}</span></p>
+                <p>Priority : <span> ${priority}</span></p>
             </div>
         </div>
     `;
