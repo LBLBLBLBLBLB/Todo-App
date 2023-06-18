@@ -4,3 +4,7 @@ Simple Todo List application for adding tasks, displaying task details, and dele
 Stack: Javascript, HTML, CSS
 ---
 Check out [Live Demo](https://lblblblblblb.github.io/todo-app/)
+---
+![img](/img/todo-img-1.png)
+![img](/img/todo-img-2.png)
+![img](/img/todo-img-3.png)
